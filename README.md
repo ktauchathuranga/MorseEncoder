@@ -28,6 +28,7 @@ void loop() {
   delay(1000);
 }
 ```
+or you can Navigate to the Examples of the Arduino IDE and find the Example code there!
 
 ## Contributing
 
