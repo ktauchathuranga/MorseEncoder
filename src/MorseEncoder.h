@@ -14,7 +14,6 @@ private:
   int _pin;
   int _unitTime;
   int _freq;
-  char _text[];
 
   void dot(){
       
