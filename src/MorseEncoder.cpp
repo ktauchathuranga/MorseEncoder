@@ -15,6 +15,7 @@ void MorseEncoder::begin(int wpm=15, int freq=600) {
 
 void MorseEncoder::encode(String text) {
   text.toUpperCase();
+  char* _text = new char[text.length() + 1];
   strcpy(_text, text.c_str());
   int len = strlen(_text);
       for (int i=0;i<len;i++) {
