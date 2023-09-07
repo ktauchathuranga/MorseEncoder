@@ -10,7 +10,7 @@ void MorseEncoder::begin(int wpm=15, int freq=600) {
   _freq = freq;
 
   pinMode(_pin, OUTPUT);
-  Serial.begin(9600);
+  //Serial.begin(9600);
 }
 
 void MorseEncoder::encode(String text) {
