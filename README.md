@@ -12,7 +12,7 @@ Sketch -> Include Library -> Add .ZIP Library...
 
 ## Usage
 
-```cpp
+```c++
 #include "MorseEncoder.h"
 
 MorseEncoder morse(9); // Initialize with the desired pin
