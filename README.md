@@ -1,6 +1,6 @@
 # MorseEncoder
 
-MorseEncoder is a Arduino library for Encoding Strings to Morse Code(Audio).
+MorseEncoder is an Arduino library for Encoding Strings to Morse Code(Audio).
 
 ## Installation
 
@@ -11,9 +11,9 @@ MorseEncoder is a Arduino library for Encoding Strings to Morse Code(Audio).
 Sketch -> Include Library -> Add .ZIP Library...
 ```
 
-also, You can install the Library directly from Library Manger in the IDE.
+also, You can install the Library directly from the Library Manager in the IDE.
 
-```bash
+```
 Sketch -> Include Library -> Library Manger... -> Search for - MorseEncoder
 ```
 
