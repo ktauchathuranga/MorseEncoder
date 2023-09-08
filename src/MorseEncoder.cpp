@@ -5,7 +5,7 @@ MorseEncoder::MorseEncoder(int pin) {
   _pin = pin;
 }
 
-void MorseEncoder::beginAudio(int wpm = 15, int freq = 600) {
+void MorseEncoder::beginAudio(int wpm, int freq) {   // removed int wpm = 15, int freq = 600 def values cuz esp8266 gimme hard times
   _unitTime = 1200 / wpm;
   _freq = freq;
 
@@ -13,7 +13,7 @@ void MorseEncoder::beginAudio(int wpm = 15, int freq = 600) {
   //Serial.begin(9600);
 }
 
-void MorseEncoder::beginLight(int wpm = 15) {
+void MorseEncoder::beginLight(int wpm) {
   _unitTime = 1200 / wpm;
 
   pinMode(_pin, OUTPUT);
