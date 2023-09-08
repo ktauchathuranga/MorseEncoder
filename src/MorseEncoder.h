@@ -7,8 +7,8 @@ class MorseEncoder {
     //int audFreq = 100;
 
     MorseEncoder(int pin); // Constructor
-    void beginAudio(int wpm = 15, int freq = 600);
-    void beginLight(int wpm = 15);
+    void beginAudio(int wpm, int freq); // removed default arguments cuz esp8266 giving me hard times
+    void beginLight(int wpm);
     void encodeAudio(String text);
     void encodeLight(String text);
 
