@@ -26,8 +26,8 @@ MorseEncoder morseA(9);  // Initialize with the desired pin for Audio
 MorseEncoder morseL(13); // Initialize with the desired pin for Light
 
 void setup() {
-  morseA.beginAudio(15, 500); // [AUDIO] Initialize WPM rate and frequency, defult wpm = 15 and frequency = 600
-  morseL.beginLight(15);      // [LIGHT] Initialize WPM rate and frequency, defult wpm = 15
+  morseA.beginAudio(15, 500); // [AUDIO] Initialize WPM (word per minute) rate and frequency
+  morseL.beginLight(15);      // [LIGHT] Initialize WPM (word per minute) rate
 }
 
 void loop() {
