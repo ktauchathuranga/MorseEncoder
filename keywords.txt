@@ -12,5 +12,7 @@ MorseEncoder	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-begin	 KEYWORD2
-encode KEYWORD2
+beginAudio	 KEYWORD2
+beginLight	 KEYWORD2
+encodeAudio KEYWORD2
+encodeLight KEYWORD2
