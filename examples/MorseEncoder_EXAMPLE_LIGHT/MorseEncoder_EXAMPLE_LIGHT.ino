@@ -3,7 +3,7 @@
 MorseEncoder morseL(13); // Initialize with the desired pin for Light
 
 void setup() {
-  morseL.beginLight(15);      // [LIGHT] Initialize WPM rate and frequency, defult wpm = 15
+  morseL.beginLight(15);      // [LIGHT] Initialize WPM (word per minute) rate
 }
 
 void loop() {
