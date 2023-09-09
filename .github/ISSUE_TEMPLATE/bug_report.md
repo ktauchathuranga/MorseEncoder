@@ -26,6 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
  - Version [e.g. 22]
+ - Board Name: [e.g. Arduino UNO, ESP8266]
 
 **Additional context**
 Add any other context about the problem here.
