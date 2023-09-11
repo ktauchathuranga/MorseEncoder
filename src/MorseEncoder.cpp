@@ -29,12 +29,9 @@ void MorseEncoder::encodeLight(String text) {
 }
 
 void MorseEncoder::encode(String text, int mode) {
-  text.toUpperCase();
-  char* _text = new char[text.length() + 1];
-  strcpy(_text, text.c_str());
-  int len = strlen(_text);
+  int len = text.length();
   for (int i = 0; i < len; i++) {
-    char oneLetter = (_text[i]);
+    char oneLetter = toupper(text.charAt(i)); // convert to uppercase directly.
     switch (oneLetter) {
       case 'A': A(mode); break;
       case 'B': B(mode); break;
@@ -84,13 +81,15 @@ void MorseEncoder::encode(String text, int mode) {
       case '!': Sexclamation(mode); break;
       case '-': Shyphen(mode); break;
       case '_': Sunderscore(mode); break;
-      case '"': Sdquotation(mode);; break;
+      case '"': Sdquotation(mode); break;
       case '(': Slbracket(mode); break;
       case ')': Srbracket(mode); break;
       case '$': Sdollar(mode); break;
       case '&': Sampersand(mode); break;
       case '@': Sat(mode); break;
       case '+': Splus(mode); break;
+      default: // unrecognized characters or symbols here.
+        break;
     }
   }
 }
