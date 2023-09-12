@@ -1,6 +1,65 @@
 #ifndef MorseEncoder_h
 #define MorseEncoder_h
 
+const char* const morseCodes[36] PROGMEM = {
+  ".-",    // A
+  "-...",  // B
+  "-.-.",  // C
+  "-..",   // D
+  ".",     // E
+  "..-.",  // F
+  "--.",   // G
+  "....",  // H
+  "..",    // I
+  ".---",  // J
+  "-.-",   // K
+  ".-..",  // L
+  "--",    // M
+  "-.",    // N
+  "---",   // O
+  ".--.",  // P
+  "--.-",  // Q
+  ".-.",   // R
+  "...",   // S
+  "-",     // T
+  "..-",   // U
+  "...-",  // V
+  ".--",   // W
+  "-..-",  // X
+  "-.--",  // Y
+  "--..",  // Z
+  "-----", // 0
+  ".----", // 1
+  "..---", // 2
+  "...--", // 3
+  "....-", // 4
+  ".....", // 5
+  "-....", // 6
+  "--...", // 7
+  "---..", // 8
+  "----."  // 9
+};
+
+const char* const morseSpecialChars[17] PROGMEM = {
+  ".-.-.-",  // .
+  "--..--",  // ,
+  "---...",  // :
+  "-.-.-.",  // ;
+  "..--..",  // ?
+  "-..-.",   // =
+  "-..-.",   // /
+  "-.-.--",  // !
+  "-....-",  // -
+  "..--.-",  // _
+  ".-..-.",  // "
+  "-.--.",   // (
+  "-.--.-",  // )
+  "...-..-", // $
+  ".--.-.",  // @
+  ".-...",   // &
+  ".-.-."    // +
+};
+
 class MorseEncoder {
   public:
     //int unitTime = 80;                   // unit time in ms, if you want 15 WPM, unitTime = 1200 / 15
@@ -18,6 +77,8 @@ class MorseEncoder {
     int _freq;
 
     void encode(String text, int mode);
+
+
 
     void dot(int mode) {
       if (mode == 1) {
@@ -50,405 +111,6 @@ class MorseEncoder {
     }
     void letterSpace() {
       delay(_unitTime * 2);
-    }
-
-    void A(int mode) {
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void B(int mode) {
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void C(int mode) {
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void D(int mode) {
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void E(int mode) {
-      dot(mode);
-      letterSpace();
-    }
-    void LF(int mode) {
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void G(int mode) {
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void H(int mode) {
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void I(int mode) {
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void J(int mode) {
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void K(int mode) {
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void L(int mode) {
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void M(int mode) {
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void N(int mode) {
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void O(int mode) {
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void P(int mode) {
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Q(int mode) {
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void R(int mode) {
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void S(int mode) {
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void T(int mode) {
-      dash(mode);
-      letterSpace();
-    }
-    void U(int mode) {
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void V(int mode) {
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void W(int mode) {
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void X(int mode) {
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Y(int mode) {
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Z(int mode) {
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void N0(int mode) {
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void N1(int mode) {
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void N2(int mode) {
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void N3(int mode) {
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void N4(int mode) {
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void N5(int mode) {
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void N6(int mode) {
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void N7(int mode) {
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void N8(int mode) {
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void N9(int mode) {
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void SfullStop(int mode) {
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Scolon(int mode) {
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Scomma(int mode) {
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Ssemicolon(int mode) {
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Squestion(int mode) {
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Sequal(int mode) {
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Ssquotation(int mode) {
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Sslash(int mode) {
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Sexclamation(int mode) {
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Shyphen(int mode) {
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Sunderscore(int mode) {
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Sdquotation(int mode) {
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Slbracket(int mode) {
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Srbracket(int mode) {
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Sdollar(int mode) {
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dash(mode);
-      letterSpace();
-    }
-    void Sampersand(int mode) {
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dot(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Sat(int mode) {
-      dot(mode);
-      dash(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
-    }
-    void Splus(int mode) {
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      dash(mode);
-      dot(mode);
-      letterSpace();
     }
     // Add other private variables and functions here if needed
 };
