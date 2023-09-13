@@ -30,13 +30,13 @@ void MorseEncoder::encodeLight(String text) {
 
 void MorseEncoder::encode(String text, int mode) {
   text.toUpperCase();
-  for (int i = 0; i < text.length(); i++) {
+  for (unsigned int i = 0; i < text.length(); i++) {
     char character = text.charAt(i);
     //char character = 'O'; // Replace with the letter you want to print
     int index = character - 'A'; // Calculate the index for the letter
 
     if (index >= 0 && index < 26) {
-      const char* morse = reinterpret_cast<const char*>(pgm_read_word(&morseCodes[index])); // Get the Morse code for the letter
+      const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseCodes[index])); // Get the Morse code for the letter
 
       for (int j = 0; morse[j] != '\0'; j++) {
         if (morse[j] == '.') {
@@ -53,7 +53,7 @@ void MorseEncoder::encode(String text, int mode) {
       // Handle numbers if needed
       int index = character - '0' + 26; // Calculate the index for the digit
 
-      const char* morse = reinterpret_cast<const char*>(pgm_read_word(&morseCodes[index])); // Get the Morse code for the digit
+      const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseCodes[index])); // Get the Morse code for the digit
 
       for (int j = 0; morse[j] != '\0'; j++) {
         if (morse[j] == '.') {
@@ -74,7 +74,7 @@ void MorseEncoder::encode(String text, int mode) {
 
       // Check if the character is one of the special characters
       const char specialChars[] = ".,:;?=/!-_\"()$@&+";
-      for (int j = 0; j < sizeof(specialChars) - 1; j++) {
+      for (unsigned int j = 0; j < sizeof(specialChars) - 1; j++) {
         if (character == specialChars[j]) {
           index = j;
           break;
@@ -82,7 +82,7 @@ void MorseEncoder::encode(String text, int mode) {
       }
 
       if (index >= 0 && index < 17) {
-        const char* morse = reinterpret_cast<const char*>(pgm_read_word(&morseSpecialChars[index])); // Get the Morse code for the character
+        const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseSpecialChars[index])); // Get the Morse code for the character
 
         for (int j = 0; morse[j] != '\0'; j++) {
           if (morse[j] == '.') {
