@@ -60,7 +60,7 @@ const char* const morseSpecialChars[17] PROGMEM = {
   ".-.-."    // +
 };
 
-class MorseEncoder {
+class MorseEncoder : public Print {
   public:
     //int unitTime = 80;                   // unit time in ms, if you want 15 WPM, unitTime = 1200 / 15
     //int audFreq = 100;
@@ -68,15 +68,17 @@ class MorseEncoder {
     MorseEncoder(int pin); // Constructor
     void beginAudio(int wpm, int freq); // removed default arguments cuz esp8266 giving me hard times
     void beginLight(int wpm);
-    void encodeAudio(String text);
-    void encodeLight(String text);
+    // void encodeAudio(String text);
+    // void encodeLight(String text);
+    void encode(String text);
+    unsigned int write(uint8_t character);
+    using Print::write;
 
   private:
     int _pin;
     int _unitTime;
     int _freq;
-
-    void encode(String text, int mode);
+    int _mode;
 
 
 
