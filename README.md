@@ -1,6 +1,6 @@
 # MorseEncoder
 
-MorseEncoder is an Arduino library for Encoding Strings to Morse Code (Audio and Light).
+MorseEncoder is an Arduino Library for Encoding Data to Morse Code (Audio and Light).
 
 ## Installation
 
@@ -22,8 +22,8 @@ Sketch -> Include Library -> Library Manger... -> Search for - MorseEncoder
 ```c++
 #include "MorseEncoder.h"
 
-MorseEncoder morseA(9);  // Initialize with the desired pin for Audio
-MorseEncoder morseL(13); // Initialize with the desired pin for Light
+MorseEncoder morseA(9);       // Initialize with the desired pin for Audio **PWM pins only
+MorseEncoder morseL(13);      // Initialize with the desired pin for Light
 
 void setup() {
   morseA.beginAudio(15, 500); // [AUDIO] Initialize WPM (word per minute) rate and frequency
@@ -32,9 +32,9 @@ void setup() {
 
 void loop() {
   String message = "sos";
-  morseA.encodeAudio(message); // [AUDIO] Boradcast encoded audio
+  morseA.print(message);   // [AUDIO] Boradcast encoded audio >> or you can use morseA.encodeAudio(message); **for strings only
   delay(2000);
-  morseL.encodeLight(message); // [LIGHT] Broadcast encoded light
+  morseL.print(message);   // [LIGHT] Broadcast encoded light >> or you can use morseL.encodeLight(message); **for strings only
   delay(2000);
 }
 ```
