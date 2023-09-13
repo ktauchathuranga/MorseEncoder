@@ -50,7 +50,7 @@ unsigned int MorseEncoder::write(uint8_t character) {
       } else if (morse[j] == '-') {
         dash(_mode);
       }
-      Serial.println(morse[j]); // Print each individual character of Morse code
+      //Serial.println(morse[j]); // Print each individual character of Morse code
     }
 
     //Serial.println(); // Print a new line to separate Morse codes
@@ -114,7 +114,7 @@ unsigned int MorseEncoder::write(uint8_t character) {
 //----------- old method strt -----------
 
 void MorseEncoder::encode(String text) {
-  text.toUpperCase();
+  //text.toUpperCase(); // its converting inside the write
   for (unsigned int i = 0; i < text.length(); i++) {
     char character = text.charAt(i);
     //Serial.println(character);
