@@ -8,6 +8,7 @@ MorseEncoder::MorseEncoder(int pin) {
 void MorseEncoder::beginAudio(int wpm, int freq) {   // removed int wpm = 15, int freq = 600 def values cuz esp8266 gimme hard times
   _unitTime = 1200 / wpm;
   _freq = freq;
+  _mode = 1;
 
   pinMode(_pin, OUTPUT);
   //Serial.begin(9600);
@@ -15,86 +16,110 @@ void MorseEncoder::beginAudio(int wpm, int freq) {   // removed int wpm = 15, in
 
 void MorseEncoder::beginLight(int wpm) {
   _unitTime = 1200 / wpm;
+  _mode = 0;
 
   pinMode(_pin, OUTPUT);
   //Serial.begin(9600);
 }
 
-void MorseEncoder::encodeAudio(String text) {
-  MorseEncoder::encode(text, 1);
-}
+//----------- old method strt -----------
 
-void MorseEncoder::encodeLight(String text) {
-  MorseEncoder::encode(text, 0);
-}
+// void MorseEncoder::encodeAudio(String text) {
+//   MorseEncoder::encode(text);
+//   _mode = 1;
+// }
 
-void MorseEncoder::encode(String text, int mode) {
-  text.toUpperCase();
-  for (unsigned int i = 0; i < text.length(); i++) {
-    char character = text.charAt(i);
-    //char character = 'O'; // Replace with the letter you want to print
-    int index = character - 'A'; // Calculate the index for the letter
+// void MorseEncoder::encodeLight(String text) {
+//   MorseEncoder::encode(text);
+//   _mode = 0;
+// }
 
-    if (index >= 0 && index < 26) {
-      const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseCodes[index])); // Get the Morse code for the letter
+//----------- old method end -----------
 
-      for (int j = 0; morse[j] != '\0'; j++) {
-        if (morse[j] == '.') {
-          dot(mode);
-        } else if (morse[j] == '-') {
-          dash(mode);
-        }
-        //Serial.print(morse[j]); // Print each individual character of Morse code
+unsigned int MorseEncoder::write(uint8_t character) {
+  //Serial.println(character);
+  int index = character - 'A'; // Calculate the index for the letter
+
+  if (index >= 0 && index < 26) {
+    const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseCodes[index])); // Get the Morse code for the letter
+
+    for (int j = 0; morse[j] != '\0'; j++) {
+      if (morse[j] == '.') {
+        dot(_mode);
+      } else if (morse[j] == '-') {
+        dash(_mode);
       }
+      Serial.println(morse[j]); // Print each individual character of Morse code
+    }
 
-      //Serial.println(); // Print a new line to separate Morse codes
-      letterSpace();
-    } else if (character >= '0' && character <= '9') {
-      // Handle numbers if needed
-      int index = character - '0' + 26; // Calculate the index for the digit
+    //Serial.println(); // Print a new line to separate Morse codes
+    letterSpace();
+    return 1;
+  } else if (character >= '0' && character <= '9') {
+    // Handle numbers if needed
+    int index = character - '0' + 26; // Calculate the index for the digit
 
-      const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseCodes[index])); // Get the Morse code for the digit
+    const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseCodes[index])); // Get the Morse code for the digit
+
+    for (int j = 0; morse[j] != '\0'; j++) {
+      if (morse[j] == '.') {
+        dot(_mode);
+      } else if (morse[j] == '-') {
+        dash(_mode);
+      }
+      //Serial.print(morse[j]);
+    }
+    //Serial.println();
+    letterSpace();
+    return 1;
+  } else if (character == ' ') {
+    // Handle space if needed
+    space();
+    return 1;
+  } else {
+    // Handle other characters or invalid characters as needed
+    int index = -1;
+
+    // Check if the character is one of the special characters
+    const char specialChars[] = ".,:;?=/!-_\"()$@&+";
+    for (unsigned int j = 0; j < sizeof(specialChars) - 1; j++) {
+      if (character == specialChars[j]) {
+        index = j;
+        break;
+      }
+    }
+
+    if (index >= 0 && index < 17) {
+      const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseSpecialChars[index])); // Get the Morse code for the character
 
       for (int j = 0; morse[j] != '\0'; j++) {
         if (morse[j] == '.') {
-          dot(mode);
+          dot(_mode);
         } else if (morse[j] == '-') {
-          dash(mode);
+          dash(_mode);
         }
         //Serial.print(morse[j]);
       }
       //Serial.println();
       letterSpace();
-    } else if (character == ' ') {
-      // Handle space if needed
-      space();
-    } else {
-      // Handle other characters or invalid characters as needed
-      int index = -1;
-
-      // Check if the character is one of the special characters
-      const char specialChars[] = ".,:;?=/!-_\"()$@&+";
-      for (unsigned int j = 0; j < sizeof(specialChars) - 1; j++) {
-        if (character == specialChars[j]) {
-          index = j;
-          break;
-        }
-      }
-
-      if (index >= 0 && index < 17) {
-        const char* morse = reinterpret_cast<const char*>(pgm_read_dword(&morseSpecialChars[index])); // Get the Morse code for the character
-
-        for (int j = 0; morse[j] != '\0'; j++) {
-          if (morse[j] == '.') {
-            dot(mode);
-          } else if (morse[j] == '-') {
-            dash(mode);
-          }
-          //Serial.print(morse[j]);
-        }
-        //Serial.println();
-        letterSpace();
-      }
+      return 1;
     }
   }
+
+  return 0;
+
 }
+
+//----------- old method strt -----------
+
+void MorseEncoder::encode(String text) {
+  text.toUpperCase();
+  for (unsigned int i = 0; i < text.length(); i++) {
+    char character = text.charAt(i);
+    //Serial.println(character);
+    write(character);
+
+  }
+}
+
+//----------- old method end -----------
