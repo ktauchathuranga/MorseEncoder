@@ -38,6 +38,7 @@ void MorseEncoder::beginLight(int wpm) {
 
 unsigned int MorseEncoder::write(uint8_t character) {
   //Serial.println(character);
+  character = toupper(character);
   int index = character - 'A'; // Calculate the index for the letter
 
   if (index >= 0 && index < 26) {
