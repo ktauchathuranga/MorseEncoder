@@ -45,7 +45,7 @@ or you can Navigate to the Examples of the Arduino IDE and find the Example code
 Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
 Please make sure to update tests as appropriate.
-and big thank goes to the dev friends in this [Arduino Forum](https://forum.arduino.cc/t/i-need-help-with-my-library/1167276/21)
+and a big thanks goes to the dev friends in this [Arduino Forum](https://forum.arduino.cc/t/i-need-help-with-my-library/1167276/21)
 
 ## License
 
