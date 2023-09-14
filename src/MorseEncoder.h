@@ -70,7 +70,7 @@ class MorseEncoder : public Print {
     void beginLight(int wpm);
     // void encodeAudio(String text);
     // void encodeLight(String text);
-    void encode(String text);
+    // void encode(String text);
     unsigned int write(uint8_t character);
     using Print::write;
 
@@ -109,7 +109,7 @@ class MorseEncoder : public Print {
       }
     }
     void space() {
-      delay(6 * _unitTime); // cuz every dot and dash end with one unit, (actuall space 7 unit)
+      delay(6 * _unitTime); // cuz every dot and dash end with one unit, (actual space 7 unit)
     }
     void letterSpace() {
       delay(_unitTime * 2);
