@@ -1,22 +1,22 @@
-# MorseEncoder
+# **MorseEncoder**
+### _Morseencoder is an Arduino library for encoding data to Morse code (Audio and light)._
+Introducing the MorseEncoder library, a tool that converts various data types to Morse codes, including **integers, longs, characters, character arrays, and strings.** it can be encoded as [AUDIO](https://github.com/ktauchathuranga/MorseEncoder/blob/main/examples/MorseEncoder_EXAMPLE_AUDIO/MorseEncoder_EXAMPLE_AUDIO.ino) or [LIGHT](https://github.com/ktauchathuranga/MorseEncoder/blob/main/examples/MorseEncoder_EXAMPLE_LIGHT/MorseEncoder_EXAMPLE_LIGHT.ino) by your choice.
 
-MorseEncoder is an Arduino Library for Encoding Data to Morse Code (Audio and Light).
-
+***
 ## Installation
 
-1. Go to the [```Releases```](https://github.com/ktauchathuranga/MorseEncoder/releases) and Download the latest version. 
-2. Use the Arduino Library manager to install MorseEncoder.
+1. Go to the [```Releases```](https://github.com/ktauchathuranga/MorseEncoder/releases) Page and download the latest version. 
+2. Use the Arduino Library Manager to install MorseEncoder.
 
 ```bash
 Sketch -> Include Library -> Add .ZIP Library...
 ```
 
-also, You can install the Library directly from the Library Manager in the IDE.
+Also, you can install the library directly from the Library Manager in the IDE.
 
 ```
 Sketch -> Include Library -> Library Manger... -> Search for - MorseEncoder
 ```
-
 ## Usage
 
 ```c++
@@ -38,7 +38,7 @@ void loop() {
   delay(2000);
 }
 ```
-or you can Navigate to the Examples of the Arduino IDE and find the Example code there!
+or you can navigate to the Examples section of the Arduino IDE and find the example code there!
 
 ## Contributing
 
@@ -50,4 +50,3 @@ and a big thanks goes to the dev friends in this [Arduino Forum](https://forum.a
 ## License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
