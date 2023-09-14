@@ -8,7 +8,7 @@ void setup() {
 
 void loop() {
   String message = "sos";
-  morseL.print(message);   // [LIGHT] Boradcast encoded light >> or you can use morseL.encodeLight(message); **for the strings only
+  morseL.print(message);   // [LIGHT] Broadcast encoded light
   delay(2000);
   morseL.print(123);       // [LIGHT] its inherits from Print class, so you can encode various types of data
   delay(2000);
