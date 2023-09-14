@@ -113,14 +113,14 @@ unsigned int MorseEncoder::write(uint8_t character) {
 
 //----------- old method strt -----------
 
-void MorseEncoder::encode(String text) {
-  //text.toUpperCase(); // its converting inside the write
-  for (unsigned int i = 0; i < text.length(); i++) {
-    char character = text.charAt(i);
-    //Serial.println(character);
-    write(character);
+// void MorseEncoder::encode(String text) {
+//   //text.toUpperCase(); // its converting inside the write
+//   for (unsigned int i = 0; i < text.length(); i++) {
+//     char character = text.charAt(i);
+//     //Serial.println(character);
+//     write(character);
 
-  }
-}
+//   }
+// }
 
 //----------- old method end -----------
