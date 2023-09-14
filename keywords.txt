@@ -14,5 +14,3 @@ MorseEncoder	KEYWORD1
 
 beginAudio	 KEYWORD2
 beginLight	 KEYWORD2
-encodeAudio KEYWORD2
-encodeLight KEYWORD2
