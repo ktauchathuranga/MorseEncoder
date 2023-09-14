@@ -1,6 +1,7 @@
 # **MorseEncoder**
 ### _Morseencoder is an Arduino library for encoding data to Morse code (Audio and light)._
 Introducing the MorseEncoder library, a tool that converts various data types to Morse codes, including **integers, longs, characters, character arrays, and strings.** it can be encoded as [AUDIO](https://github.com/ktauchathuranga/MorseEncoder/blob/main/examples/MorseEncoder_EXAMPLE_AUDIO/MorseEncoder_EXAMPLE_AUDIO.ino) or [LIGHT](https://github.com/ktauchathuranga/MorseEncoder/blob/main/examples/MorseEncoder_EXAMPLE_LIGHT/MorseEncoder_EXAMPLE_LIGHT.ino) by your choice.
+##### Currently supported characters[53] : **`ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789.:,;?=/!-_"()$@&+`**
 
 ***
 ## Installation
