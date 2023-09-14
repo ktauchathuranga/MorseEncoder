@@ -10,8 +10,8 @@ void setup() {
 
 void loop() {
   String message = "sos";
-  morseA.print(message);   // [AUDIO] Boradcast encoded audio >> or you can use morseA.encodeAudio(message); **for strings only
+  morseA.print(message);   // [AUDIO] Boradcast encoded audio
   delay(2000);
-  morseL.print(message);   // [LIGHT] Broadcast encoded light >> or you can use morseL.encodeLight(message); **for strings only
+  morseL.print(message);   // [LIGHT] Broadcast encoded light
   delay(2000);
 }
