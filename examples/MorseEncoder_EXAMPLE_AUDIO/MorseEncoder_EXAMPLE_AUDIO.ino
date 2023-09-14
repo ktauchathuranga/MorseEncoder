@@ -8,7 +8,7 @@ void setup() {
 
 void loop() {
   String message = "sos";
-  morseA.print(message);   // [AUDIO] Boradcast encoded audio >> or you can use morseA.encodeAudio(message); **for the strings only
+  morseA.print(message);   // [AUDIO] Boradcast encoded audio
   delay(2000);
   morseA.print(123);       // [AUDIO] its inherits from Print class, so you can encode various types of data
   delay(2000);
