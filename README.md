@@ -51,3 +51,6 @@ and a big thanks goes to the dev friends in this [Arduino Forum](https://forum.a
 ## License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+
+## Links
+[Lib Log](https://downloads.arduino.cc/libraries/logs/github.com/ktauchathuranga/MorseEncoder/)
