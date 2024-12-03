@@ -1,0 +1,80 @@
+name: Check Library Version, Merge PR, and Create Release
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  check-version-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the PR Code
+      - name: Checkout PR Code
+        uses: actions/checkout@v3
+
+      # Extract the version from the PR
+      - name: Get Version from Pull Request
+        id: pr_version
+        run: |
+          pr_version=$(grep '^version=' library.properties | cut -d'=' -f2)
+          echo "PR version: $pr_version"
+          echo "pr_version=$pr_version" >> $GITHUB_ENV
+
+      # Fetch the main branch's library.properties
+      - name: Fetch Main Branch Version
+        run: |
+          git fetch origin main
+          git checkout origin/main -- library.properties
+          main_version=$(grep '^version=' library.properties | cut -d'=' -f2)
+          echo "Main version: $main_version"
+          echo "main_version=$main_version" >> $GITHUB_ENV
+
+      # Compare Versions
+      - name: Compare Versions
+        id: compare_versions
+        run: |
+          if [ "$pr_version" = "$main_version" ]; then
+            echo "PR version is the same as the main branch version."
+            exit 1
+          else
+            echo "PR version is different from the main branch version."
+          fi
+
+      # Merge the Pull Request
+      - name: Merge Pull Request
+        if: success() && steps.compare_versions.outcome == 'success'
+        run: |
+          PR_NUMBER=$(jq --raw-output .pull_request.number $GITHUB_EVENT_PATH)
+          PR_TITLE=$(jq --raw-output .pull_request.title $GITHUB_EVENT_PATH)
+      
+          echo "Merging PR #${PR_NUMBER} titled \"${PR_TITLE}\""
+      
+          # GitHub API URL for merging the PR
+          API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/merge"
+      
+          # Make API request to merge the pull request
+          curl -X PUT "${API_URL}" \
+            -H "Authorization: token ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"commit_title":"Merge PR #'"${PR_NUMBER}"' - '"${PR_TITLE}"'","merge_method":"squash"}'
+      
+          echo "Pull request #${PR_NUMBER} merged successfully."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+      # Create a Release
+      - name: Create GitHub Release
+        if: success()
+        uses: actions/create-release@v1
+        with:
+          tag_name: v${{ env.pr_version }}
+          release_name: Release v${{ env.pr_version }}
+          body: |
+            **Changelog**
+            - Updated to version ${{ env.pr_version }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
